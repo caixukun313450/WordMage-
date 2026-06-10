@@ -1,0 +1,11 @@
+target/
+.idea/
+.git/
+*.iml
+application-local.properties
+src/main/resources/application-local.properties
+HELP.md
+docs/
+deploy/
+*.md
+.env

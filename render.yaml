@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: wordmage
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: ZHIPU_API_KEY
+        sync: false

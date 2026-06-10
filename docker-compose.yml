@@ -1,0 +1,9 @@
+services:
+  wordmage:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      ZHIPU_API_KEY: ${ZHIPU_API_KEY}
+    restart: unless-stopped

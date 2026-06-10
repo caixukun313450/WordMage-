@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WordMage 单词魔法师</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="logo">
+        <span class="logo-icon">✨</span>
+        <h1>WordMage 单词魔法师</h1>
+      </div>
+      <div class="stars-bar">
+        <span id="starCount">0</span> / 10 ⭐
+        <button id="treasureBtn" class="btn-treasure hidden" title="单词宝藏">🎁 宝藏</button>
+      </div>
+    </header>
+
+    <nav class="tabs">
+      <button class="tab active" data-tab="create">✏️ 创作故事</button>
+      <button class="tab" data-tab="review">📚 复习列表</button>
+      <button class="tab" data-tab="report">📊 学习报告</button>
+    </nav>
+
+    <!-- 创作故事 -->
+    <section id="tab-create" class="panel active">
+      <div class="card">
+        <h2>每日魔法单词</h2>
+        <div id="dailyWords" class="daily-words"></div>
+      </div>
+
+      <div class="card">
+        <h2>输入单词（1-5 个）</h2>
+        <div class="word-input-row">
+          <input type="text" id="wordInput" placeholder="输入英文单词，按回车添加" maxlength="30">
+          <button id="addWordBtn" class="btn btn-primary">添加</button>
+        </div>
+        <div id="selectedWords" class="word-tags"></div>
+        <div class="word-bank-toggle">
+          <button id="toggleBankBtn" class="btn btn-link">📖 打开词库</button>
+        </div>
+        <div id="wordBank" class="word-bank hidden"></div>
+        <button id="generateBtn" class="btn btn-magic">🪄 生成魔法故事</button>
+      </div>
+
+      <div id="storyCard" class="card hidden">
+        <div class="story-header">
+          <h2 id="storyTitle"></h2>
+          <div class="story-actions">
+            <button id="speakEnBtn" class="btn btn-sm">🔊 朗读英文</button>
+            <button id="speakZhBtn" class="btn btn-sm">🔊 朗读中文</button>
+          </div>
+        </div>
+        <p id="demoBadge" class="demo-badge hidden">演示模式（未配置 API Key）</p>
+        <div id="storyEn" class="story-en"></div>
+        <div id="storyZh" class="story-zh"></div>
+      </div>
+    </section>
+
+    <!-- 复习列表 -->
+    <section id="tab-review" class="panel">
+      <div class="card">
+        <h2>最近 7 天单词</h2>
+        <p class="hint">点击单词可朗读</p>
+        <ul id="reviewList" class="review-list"></ul>
+      </div>
+    </section>
+
+    <!-- 学习报告 -->
+    <section id="tab-report" class="panel">
+      <div class="card">
+        <h2>学习统计</h2>
+        <div class="stats-grid">
+          <div class="stat-item"><span id="statStories">0</span><label>生成故事</label></div>
+          <div class="stat-item"><span id="statWords">0</span><label>学习单词</label></div>
+          <div class="stat-item"><span id="statStars">0</span><label>收集星星</label></div>
+        </div>
+        <h3>词频 Top 10</h3>
+        <ul id="freqList" class="freq-list"></ul>
+      </div>
+    </section>
+  </div>
+
+  <!-- 单词配对游戏 -->
+  <div id="gameModal" class="modal hidden">
+    <div class="modal-content">
+      <h2>🎮 单词配对闯关</h2>
+      <p>将英文单词与中文释义配对（已生成 3 个故事，来挑战吧！）</p>
+      <div id="gameBoard" class="game-board"></div>
+      <p id="gameScore" class="game-score"></p>
+      <button id="closeGameBtn" class="btn btn-primary">完成</button>
+    </div>
+  </div>
+
+  <!-- 单词宝藏彩蛋 -->
+  <div id="treasureModal" class="modal hidden">
+    <div class="modal-content treasure">
+      <h2>🎁 单词宝藏已解锁！</h2>
+      <p>恭喜你收集了 10 颗星星！</p>
+      <div class="treasure-words" id="treasureContent"></div>
+      <button id="closeTreasureBtn" class="btn btn-primary">太棒了！</button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="/js/storage.js"></script>
+  <script src="/js/tts.js"></script>
+  <script src="/js/game.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
